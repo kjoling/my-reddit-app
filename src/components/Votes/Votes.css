@@ -1,0 +1,8 @@
+.Votes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.Votes-count {
+  margin: 8px 0;
+}
