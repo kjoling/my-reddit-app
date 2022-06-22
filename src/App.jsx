@@ -12,7 +12,7 @@ function App() {
         <Home />
       </main>
       <aside>
-        <Subreddits />{" "}
+        <Subreddits />
       </aside>
     </div>
   );

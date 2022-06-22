@@ -1,8 +1,7 @@
-import React from "react";
+import Search from "../../components/Search/Search";
 import RedditIcon from "@mui/icons-material/Reddit";
-import SearchIcon from "@mui/icons-material/Search";
 import Paper from "@mui/material/Paper";
-import { TextField } from "@mui/material";
+import MultipleSelect from "../../components/Select/MultipleSelect";
 
 import "./Header.css";
 
@@ -16,16 +15,8 @@ const Header = () => {
             Reddit <span className="redditMinimal">Minimal</span>
           </p>
         </div>
-        <form className="search">
-          <TextField
-            id="standard-search"
-            label="Search"
-            type="search"
-            variant="standard"
-            sx={{ margin: "0" }}
-          />
-          <SearchIcon sx={{ cursor: "pointer" }} />
-        </form>
+        <Search />
+        <MultipleSelect />
       </header>
     </Paper>
   );
