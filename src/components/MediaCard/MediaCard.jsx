@@ -3,9 +3,11 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
+import ForumOutlinedIcon from "@mui/icons-material/ForumOutlined";
+import { IconButton } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { Divider } from "@mui/material";
-
+import { Link } from "@mui/material/";
 import "./MediaCard.css";
 
 export default function MediaCard() {
@@ -19,8 +21,22 @@ export default function MediaCard() {
       </CardContent>
       <Divider sx={{ width: "100%", margin: "auto" }} />
       <CardActions className="MediaCard-Buttons">
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+        <Link underline="none" variant="body2">
+          Username
+        </Link>
+        <Typography variant="caption">Time Ago Posted</Typography>
+        <section
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <IconButton size="small">
+            <ForumOutlinedIcon />
+          </IconButton>
+          <Typography>#comments</Typography>
+        </section>
       </CardActions>
     </section>
   );
