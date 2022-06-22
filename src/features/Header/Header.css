@@ -1,0 +1,29 @@
+header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-content: center;
+  grid-gap: 16px;
+  padding: 0 64px;
+}
+
+.redditLogo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+}
+.redditLogo svg {
+  margin-right: 10px;
+  color: blue;
+}
+.redditSiteName {
+  color: red;
+}
+.redditMinimal {
+  color: blue;
+}
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
