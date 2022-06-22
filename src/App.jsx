@@ -7,11 +7,13 @@ import Subreddits from "./features/Subreddits/Subreddits";
 function App() {
   return (
     <div className="App">
-      <Header />
-      <main>
+      <div className="App-Header">
+        <Header />
+      </div>
+      <main className="App-Home">
         <Home />
       </main>
-      <aside>
+      <aside className="App-Subreddits">
         <Subreddits />
       </aside>
     </div>

@@ -1,12 +1,13 @@
+import { Paper } from "@mui/material";
 import React from "react";
-import MediaCard from "../../components/Card/Card";
+import MediaCard from "../../components/MediaCard/MediaCard";
 import "./Post.css";
 
 const Post = () => {
   return (
-    <div className="Post">
+    <Paper className="Post">
       <MediaCard />
-    </div>
+    </Paper>
   );
 };
 
