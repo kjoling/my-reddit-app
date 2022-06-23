@@ -13,3 +13,8 @@ export const getSubreddits = async () => {
   const data = response.data;
   return data.data.children.map((subreddit) => subreddit.data);
 };
+
+export const getPostComments = async (permalink) => {
+  const response = await axios.get(`${API_ROOT}${permalink}.json`);
+  console.log(response.data);
+};
