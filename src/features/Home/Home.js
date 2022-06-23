@@ -16,8 +16,8 @@ const Home = () => {
   if (status === "loading") {
     content = <p>Loading...</p>;
   } else if (status === "succeeded") {
-    content = posts?.map((post) => {
-      return <Post key={post.id} post={post} />;
+    content = posts?.map((post, index) => {
+      return <Post key={post.id} post={post} index={index} />;
     });
   } else {
     content = <p>{error}</p>;
