@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getSubredditPosts, getSubreddits } from "../api/reddit";
+import { getSubredditPosts } from "../api/reddit";
 
 const initialState = {
   posts: [],
@@ -10,21 +10,10 @@ const initialState = {
 };
 
 export const fetchSubredditPosts = createAsyncThunk(
-  "redditPosts/fechSubredditPosts",
+  "redditPosts/fetchSubredditPosts",
   async () => {
     try {
       const response = await getSubredditPosts("soccer");
-      return response;
-    } catch (err) {
-      return err.message;
-    }
-  }
-);
-export const fetchRedditPosts = createAsyncThunk(
-  "redditPosts/fechredditPosts",
-  async () => {
-    try {
-      const response = await getSubreddits();
       return response;
     } catch (err) {
       return err.message;

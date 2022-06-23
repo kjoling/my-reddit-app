@@ -1,5 +1,5 @@
-const SubredditButton = () => {
-  return <div>SubredditButton</div>;
+const SubredditButton = ({ subreddit }) => {
+  return <div>{subreddit.display_name_prefixed}</div>;
 };
 
 export default SubredditButton;

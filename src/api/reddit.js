@@ -10,5 +10,6 @@ export const getSubredditPosts = async (subreddit) => {
 
 export const getSubreddits = async () => {
   const response = await axios.get(`${API_ROOT}/subreddits.json`);
-  console.log(response.data);
+  const data = response.data;
+  return data.data.children.map((subreddit) => subreddit.data);
 };

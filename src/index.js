@@ -6,11 +6,13 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
 import { fetchSubredditPosts } from "./app/redditSlice";
+import { fetchSubreddits } from "./app/subredditSlice";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
 
 store.dispatch(fetchSubredditPosts());
+store.dispatch(fetchSubreddits());
 
 root.render(
   <React.StrictMode>

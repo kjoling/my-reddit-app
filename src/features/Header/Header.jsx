@@ -1,7 +1,7 @@
 import Search from "../../components/Search/Search";
 import RedditIcon from "@mui/icons-material/Reddit";
 import Paper from "@mui/material/Paper";
-import MultipleSelect from "../../components/MoblieSelect/MobileSelect";
+import MobileSelect from "../../components/MoblieSelect/MobileSelect";
 
 import "./Header.css";
 
@@ -16,7 +16,7 @@ const Header = () => {
           </p>
         </div>
         <Search />
-        <MultipleSelect />
+        <MobileSelect />
       </header>
     </Paper>
   );
