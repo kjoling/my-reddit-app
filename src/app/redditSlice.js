@@ -1,22 +1,31 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-import { getSubredditPosts } from "../api/reddit";
-
-const API_ROOT = "https://www.reddit.com";
+import { getSubredditPosts, getSubreddits } from "../api/reddit";
 
 const initialState = {
   posts: [],
   error: false,
-  isLoading: false,
+  status: "idle",
   searchTerm: "",
   selectedSubreddit: "/r/pics/",
 };
 
-export const fetchPosts = createAsyncThunk(
-  "redditPosts/fechPosts",
+export const fetchSubredditPosts = createAsyncThunk(
+  "redditPosts/fechSubredditPosts",
   async () => {
     try {
-      const response = await axios.get(getSubredditPosts("soccer"));
+      const response = await getSubredditPosts("soccer");
+      return response;
+    } catch (err) {
+      return err.message;
+    }
+  }
+);
+export const fetchRedditPosts = createAsyncThunk(
+  "redditPosts/fechredditPosts",
+  async () => {
+    try {
+      const response = await getSubreddits();
+      return response;
     } catch (err) {
       return err.message;
     }
@@ -28,16 +37,28 @@ const redditSlice = createSlice({
   initialState,
   reducers: {
     setPosts: (action, state) => {
+      console.log(action.payload);
       state.posts = action.payload;
     },
-    extraReducers: {
-      [fetchPosts.pending]: (state, action) => {
-        state.isLoading = true;
-      },
+  },
+  extraReducers: {
+    [fetchSubredditPosts.pending]: (state, action) => {
+      state.status = "loading";
+    },
+    [fetchSubredditPosts.fulfilled]: (state, action) => {
+      state.status = "succeeded";
+      const posts = action.payload;
+      state.posts = posts;
+    },
+    [fetchSubredditPosts.rejected]: (state, action) => {
+      state.status = "failed";
+      state.error = action.error.message;
     },
   },
 });
 
-export const selectAllPosts = (state) => state.redditPosts.posts;
+export const selectAllPosts = (state) => state.reddit.posts;
+export const selectStatus = (state) => state.reddit.status;
+export const selectErrorMessage = (state) => state.reddit.error;
 export const { setPosts } = redditSlice.actions;
 export default redditSlice.reducer;

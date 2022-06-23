@@ -7,7 +7,7 @@ import "./Header.css";
 
 const Header = () => {
   return (
-    <Paper>
+    <Paper elevation={3}>
       <header>
         <div className="redditLogo">
           <RedditIcon />
