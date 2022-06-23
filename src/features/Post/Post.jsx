@@ -5,7 +5,7 @@ import Votes from "../../components/Votes/Votes";
 
 import "./Post.css";
 
-const Post = ({ post }) => {
+const Post = ({ post, index }) => {
   return (
     <Paper
       className="Post"
@@ -16,7 +16,7 @@ const Post = ({ post }) => {
       }}
     >
       <Votes score={post.score} />
-      <MediaCard post={post} />
+      <MediaCard post={post} index={index} />
     </Paper>
   );
 };
