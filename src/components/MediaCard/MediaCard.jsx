@@ -8,8 +8,19 @@ import { Divider } from "@mui/material";
 import { Link } from "@mui/material/";
 import "./MediaCard.css";
 import shortenNumber from "../../utils/shortenNumber";
+import { useDispatch } from "react-redux";
+import { fetchPostComments, startGetComments } from "../../app/redditSlice";
 
-export default function MediaCard({ post }) {
+export default function MediaCard({ post, index }) {
+  const dispatch = useDispatch();
+  const handleClick = async () => {
+    try {
+      // dispatch(startGetComments(index));
+      dispatch(fetchPostComments({ permalink: post.permalink, index }));
+    } catch (err) {
+      return err.message;
+    }
+  };
   return (
     <section style={{ width: "85%", margin: "0 auto", padding: "0" }}>
       <CardContent sx={{ padding: "10px 0" }}>
@@ -31,7 +42,7 @@ export default function MediaCard({ post }) {
             alignItems: "center",
           }}
         >
-          <IconButton size="small">
+          <IconButton size="small" onClick={handleClick}>
             <ForumOutlinedIcon />
           </IconButton>
           <Typography>{shortenNumber(post.num_comments, 1)}</Typography>
