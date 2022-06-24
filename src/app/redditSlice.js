@@ -30,12 +30,10 @@ export const fetchSubredditPosts = createAsyncThunk(
 
 export const fetchPostComments = createAsyncThunk(
   "redditPosts/fetchPostComments",
-  async (permalink, index) => {
+  async ({ permalink, index }) => {
     try {
-      console.log("in fetch post comments");
       const comments = await getPostComments(permalink);
-      console.log(comments);
-      return comments;
+      return { comments, index };
     } catch (err) {
       return err.message;
     }
@@ -50,9 +48,10 @@ const redditSlice = createSlice({
       state.posts = action.payload;
     },
     startGetComments: (state, action) => {
-      console.log(action.payload);
       state.posts[action.payload].showingComments =
         !state.posts[action.payload].showingComments;
+      state.posts[action.payload].loadingComments = "loading";
+      state.posts[action.payload].error = false;
       if (!state.posts[action.payload].showingComments) {
         return;
       }
@@ -76,22 +75,19 @@ const redditSlice = createSlice({
       state.error = action.error.message;
     },
     [fetchPostComments.pending]: (state, action) => {
-      console.log(action.payload);
-      state.posts[action.payload].showingComments =
-        !state.posts[action.payload].showingComments;
-      state.posts[action.payload].loadingComments = "loading";
-      state.posts[action.payload].error = false;
+      //action.payload is undefined when Promise is pending
+      // state.posts[action.payload].loadingComments = "loading";
+      // state.posts[action.payload].error = false;
     },
     [fetchPostComments.fulfilled]: (state, action) => {
-      console.log(action.payload);
-      state.posts[action.payload.index].comments = action.payload;
+      state.posts[action.payload.index].comments = action.payload.comments;
       state.posts[action.payload.index].loadingComments = "succeeded";
       state.posts[action.payload.index].error = false;
     },
     [fetchPostComments.rejected]: (state, action) => {
-      console.log(action.payload);
+      console.log(action.error.message);
       state.posts[action.payload].loadingComments = "failed";
-      state.posts[action.payload].error = action.payload;
+      state.posts[action.payload].errorComments = action.error.message;
     },
   },
 });

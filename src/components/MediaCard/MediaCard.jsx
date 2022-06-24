@@ -9,18 +9,43 @@ import { Link } from "@mui/material/";
 import "./MediaCard.css";
 import shortenNumber from "../../utils/shortenNumber";
 import { useDispatch } from "react-redux";
-import { fetchPostComments, startGetComments } from "../../app/redditSlice";
+import { startGetComments } from "../../app/redditSlice";
+import { useState } from "react";
+import Skeleton from "react-loading-skeleton";
+import Comment from "../../features/Comment/Comment";
 
-export default function MediaCard({ post, index }) {
+export default function MediaCard({ post, index, onToggleComments }) {
+  const [showComments, setShowComments] = useState(false);
+
+  //dispatch startGetComments to initiate state to store commentsStatus, set index, then useEffect to trigger fetchPostComments
   const dispatch = useDispatch();
-  const handleClick = async () => {
-    try {
-      // dispatch(startGetComments(index));
-      dispatch(fetchPostComments({ permalink: post.permalink, index }));
-    } catch (err) {
-      return err.message;
+
+  const handleClick = () => {
+    dispatch(startGetComments(index));
+    setShowComments(!showComments);
+    onToggleComments(post.permalink);
+  };
+
+  // useEffect(() => {
+  //   dispatch(fetchPostComments({ permalink: post.permalink, index }));
+  // }, [dispatch, post.permalink, index]);
+
+  const renderComments = () => {
+    if (post.loadingComments === "failed") {
+      return <div>{post.errorComments}</div>;
+    } else if (post.loadingComments === "loading") {
+      return (
+        <div>
+          <Skeleton count={5} />
+        </div>
+      );
+    } else if (post.loadingComments === "succeeded") {
+      return post.comments.map((comment) => (
+        <Comment comment={comment} key={comment.id} />
+      ));
     }
   };
+
   return (
     <section style={{ width: "85%", margin: "0 auto", padding: "0" }}>
       <CardContent sx={{ padding: "10px 0" }}>
@@ -48,6 +73,7 @@ export default function MediaCard({ post, index }) {
           <Typography>{shortenNumber(post.num_comments, 1)}</Typography>
         </section>
       </CardActions>
+      {showComments && renderComments()}
     </section>
   );
 }
