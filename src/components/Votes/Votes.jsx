@@ -9,7 +9,7 @@ import { Button } from "@mui/material";
 
 import "./Votes.css";
 
-const Votes = ({ score }) => {
+const Votes = ({ score, styles }) => {
   const [voteValue, setVoteValue] = useState(0);
 
   const onHandleVote = (newValue) => {
@@ -36,16 +36,40 @@ const Votes = ({ score }) => {
     return <ArrowCircleDown sx={{ color: "#9494FF" }} />;
   };
   return (
-    <div className="Votes">
-      <Button sx={{ color: "#FF4500" }} onClick={() => onHandleVote(1)}>
+    <div className="Votes" style={styles.voteDiv}>
+      <Button
+        sx={{
+          color: "#FF4500",
+          minWidth: "0",
+          padding: "0",
+          margin: "6px 8px",
+          borderRadius: "50%",
+        }}
+        onClick={() => onHandleVote(1)}
+        style={styles.upvote}
+      >
         {renderUpVote()}
       </Button>
-      <p className="Votes-count">{score + voteValue}</p>
-      <Button sx={{ color: "#9494FF" }} onClick={() => onHandleVote(-1)}>
+      <p className="Votes-count">{score ? score + voteValue : 0 + voteValue}</p>
+      <Button
+        sx={{
+          color: "#9494FF",
+          minWidth: "0",
+          padding: "0",
+          margin: "6px 8px",
+          borderRadius: "50%",
+        }}
+        onClick={() => onHandleVote(-1)}
+        style={styles.downvote}
+      >
         {renderDownVote()}
       </Button>
     </div>
   );
+};
+
+Votes.defaultProps = {
+  styles: {},
 };
 
 export default Votes;

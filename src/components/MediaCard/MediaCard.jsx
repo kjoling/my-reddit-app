@@ -39,9 +39,10 @@ export default function MediaCard({ post, index, onToggleComments }) {
         </Box>
       );
     } else if (post.loadingComments === "succeeded") {
-      return post.comments.map((comment) => (
-        <Comment comment={comment} key={comment.id} />
-      ));
+      //only return comments with content in them
+      return post.comments
+        .filter((comment) => comment.body !== undefined)
+        .map((comment) => <Comment comment={comment} key={comment.id} />);
     }
   };
 
