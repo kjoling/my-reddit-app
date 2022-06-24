@@ -35,17 +35,6 @@ const Votes = ({ score }) => {
     }
     return <ArrowCircleDown sx={{ color: "#9494FF" }} />;
   };
-
-  // const getVoteType = () => {
-  //   if (voteValue === 1) {
-  //     return "up-vote";
-  //   }
-  //   if (voteValue === -1) {
-  //     return "down-vote";
-  //   }
-
-  //   return "";
-  // };
   return (
     <div className="Votes">
       <Button sx={{ color: "#FF4500" }} onClick={() => onHandleVote(1)}>
