@@ -61,12 +61,15 @@ const Comment = ({ comment }) => {
   return (
     <>
       <Card sx={{ width: "100%" }}>
-        <section style={{ display: "flex" }}>
-          <CardContent sx={{ width: "100%" }}>
+        <section
+          style={{ display: "flex", width: "100%", justifyContent: "center" }}
+        >
+          <CardContent sx={{ width: "90%" }}>
             <section
               style={{
                 display: "flex",
                 justifyContent: "flex-start",
+                width: "100%",
               }}
             >
               <Typography
@@ -77,12 +80,19 @@ const Comment = ({ comment }) => {
                 {comment.author}
               </Typography>
             </section>
-            <Typography variant="body2" sx={{ textAlign: "justify" }}>
+            <Typography
+              variant="body2"
+              sx={{
+                textAlign: "left",
+                width: "95%",
+                overflowWrap: "break-word",
+                margin: "auto",
+              }}
+            >
               {comment.body}
             </Typography>
           </CardContent>
         </section>
-
         <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
           <Votes score={comment.score} styles={commentStyles} />
           <Typography variant="caption">TimeAgo goes Here</Typography>
@@ -93,7 +103,9 @@ const Comment = ({ comment }) => {
         </CardActions>
       </Card>
       <Divider />
-      {showReplies && renderReplies()}
+      <section style={{ marginLeft: "20px" }}>
+        {showReplies && renderReplies()}
+      </section>
     </>
   );
 };
