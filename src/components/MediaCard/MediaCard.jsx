@@ -11,7 +11,8 @@ import shortenNumber from "../../utils/shortenNumber";
 import { useDispatch } from "react-redux";
 import { startGetComments } from "../../app/redditSlice";
 import { useState } from "react";
-import Skeleton from "react-loading-skeleton";
+import Box from "@mui/material/Box";
+import Skeleton from "@mui/material/Skeleton";
 import Comment from "../../features/Comment/Comment";
 
 export default function MediaCard({ post, index, onToggleComments }) {
@@ -26,18 +27,16 @@ export default function MediaCard({ post, index, onToggleComments }) {
     onToggleComments(post.permalink);
   };
 
-  // useEffect(() => {
-  //   dispatch(fetchPostComments({ permalink: post.permalink, index }));
-  // }, [dispatch, post.permalink, index]);
-
   const renderComments = () => {
     if (post.loadingComments === "failed") {
       return <div>{post.errorComments}</div>;
     } else if (post.loadingComments === "loading") {
       return (
-        <div>
-          <Skeleton count={5} />
-        </div>
+        <Box sx={{ width: "100%" }}>
+          <Skeleton />
+          <Skeleton animation="wave" />
+          <Skeleton animation={false} />
+        </Box>
       );
     } else if (post.loadingComments === "succeeded") {
       return post.comments.map((comment) => (

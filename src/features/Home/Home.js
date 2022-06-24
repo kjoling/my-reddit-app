@@ -7,6 +7,7 @@ import {
   selectErrorMessage,
 } from "../../app/redditSlice";
 import { fetchPostComments } from "../../app/redditSlice";
+import { Skeleton } from "@mui/material";
 
 const Home = () => {
   const posts = useSelector(selectAllPosts);
@@ -24,7 +25,24 @@ const Home = () => {
 
   let content;
   if (status === "loading") {
-    content = <p>Loading...</p>;
+    content = (
+      <>
+        <p>Loading...</p>
+        <section
+          style={{
+            width: "80%",
+            margin: "auto",
+          }}
+        >
+          <Skeleton />
+          <Skeleton animation="wave" />
+          <Skeleton animation={false} />
+          <Skeleton />
+          <Skeleton animation="wave" />
+          <Skeleton animation={false} />
+        </section>
+      </>
+    );
   } else if (status === "succeeded") {
     content = posts?.map((post, index) => {
       return (
