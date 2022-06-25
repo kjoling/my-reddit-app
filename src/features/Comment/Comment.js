@@ -38,17 +38,20 @@ const Comment = ({ comment }) => {
     //render all replies to root comment
     const replies = []; //store replies to comment and
     for (let i = 0; i < comment.replies.data.children.length; i++) {
-      if (moreComments && i < comment.replies.data.children.length - 1) {
+      if (moreComments && i < comment.replies.data.children.length) {
         replies.push(
           <Comment
             comment={comment.replies.data.children[i].data}
             key={comment.replies.data.children[i].data.id}
           />
         );
+        console.log(i);
+        console.log(comment.replies.data.children);
       }
     }
     return replies;
   };
+
   const renderRepliesButton = () =>
     showReplies ? (
       <Button size="small" onClick={handleClick} disabled={!moreComments}>
@@ -59,6 +62,7 @@ const Comment = ({ comment }) => {
         {moreComments ? "View Replies" : "No Replies"}
       </Button>
     );
+
   return (
     <>
       <Card sx={{ width: "100%" }}>
