@@ -13,6 +13,7 @@ const Comment = ({ comment }) => {
   const [showReplies, setShowReplies] = useState(false);
 
   // console.log(comment);
+  //check logic on moreComments
   const moreComments =
     comment.replies.data !== undefined &&
     comment.replies.data.children[0].data?.replies !== undefined;
