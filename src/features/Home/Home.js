@@ -34,9 +34,29 @@ const Home = () => {
             margin: "auto",
           }}
         >
+          {/* <Skeleton />
+          <Skeleton animation="wave" />
+          <Skeleton animation={false} />
+          <Skeleton />
+          <Skeleton animation="wave" />
+          <Skeleton animation={false} /> */}
+          <Skeleton variant="circular" width={50} height={50} />
+          <br />
+          <Skeleton variant="rectangular" height={300} />
           <Skeleton />
           <Skeleton animation="wave" />
           <Skeleton animation={false} />
+          <br />
+          <Skeleton variant="circular" width={50} height={50} />
+          <br />
+          <Skeleton variant="rectangular" height={300} />
+          <Skeleton />
+          <Skeleton animation="wave" />
+          <Skeleton animation={false} />
+          <br />
+          <Skeleton variant="circular" width={50} height={50} />
+          <br />
+          <Skeleton variant="rectangular" height={300} />
           <Skeleton />
           <Skeleton animation="wave" />
           <Skeleton animation={false} />

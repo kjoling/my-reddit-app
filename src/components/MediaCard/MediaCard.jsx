@@ -34,9 +34,32 @@ export default function MediaCard({ post, index, onToggleComments }) {
     } else if (post.loadingComments === "loading") {
       return (
         <Box sx={{ width: "100%" }}>
-          <Skeleton />
-          <Skeleton animation="wave" />
-          <Skeleton animation={false} />
+          <Box sx={{ width: "auto%" }}>
+            <Skeleton variant="circular" width={25} height={25} />
+            <br />
+            <Skeleton />
+            <Skeleton animation="wave" />
+            <Skeleton animation={false} />
+            <Skeleton />
+          </Box>
+          <br />
+          <Box sx={{ width: "auto%", marginLeft: "10%" }}>
+            <Skeleton variant="circular" width={25} height={25} />
+            <br />
+            <Skeleton />
+            <Skeleton animation="wave" />
+            <Skeleton animation={false} />
+            <Skeleton />
+          </Box>
+          <br />
+          <Box sx={{ width: "auto%", marginLeft: "20%" }}>
+            <Skeleton variant="circular" width={25} height={25} />
+            <br />
+            <Skeleton />
+            <Skeleton animation="wave" />
+            <Skeleton animation={false} />
+            <Skeleton />
+          </Box>
         </Box>
       );
     } else if (post.loadingComments === "succeeded") {

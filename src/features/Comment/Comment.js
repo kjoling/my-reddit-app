@@ -10,8 +10,8 @@ import TimeAgo from "../../components/MediaCard/TimeAgo";
 
 //comment.author, comment.body, comment.replies(?), comment.score
 
-const Comment = ({ comment }) => {
-  const [showReplies, setShowReplies] = useState(false);
+const Comment = ({ comment, reply }) => {
+  const [showReplies, setShowReplies] = useState(false || reply);
 
   // console.log(comment);
   //check logic on moreComments
@@ -38,15 +38,18 @@ const Comment = ({ comment }) => {
     //work on refactoring using .map method and .filter?
     //render all replies to root comment
     const replies = []; //store replies to comment and
-    for (let i = 0; i < comment.replies.data.children.length; i++) {
-      if (moreComments && i < comment.replies.data.children.length) {
-        replies.push(
-          <Comment
-            comment={comment.replies.data.children[i].data}
-            key={comment.replies.data.children[i].data.id}
-          />
-        );
-        console.log(comment.replies.data.children[i]);
+    if (moreComments) {
+      for (let i = 0; i < comment.replies.data.children.length; i++) {
+        if (moreComments && i < comment.replies.data.children.length) {
+          replies.push(
+            <Comment
+              comment={comment.replies.data.children[i].data}
+              key={comment.replies.data.children[i].data.id}
+              reply={true}
+            />
+          );
+          console.log(comment.replies.data.children[i]);
+        }
       }
     }
     return replies;
@@ -65,7 +68,7 @@ const Comment = ({ comment }) => {
 
   return (
     <>
-      <Card sx={{ width: "100%" }}>
+      <Card sx={{ width: "100%", borderLeft: "1px solid black" }}>
         <section
           style={{ display: "flex", width: "100%", justifyContent: "center" }}
         >
