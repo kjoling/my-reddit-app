@@ -16,8 +16,9 @@ const Comment = ({ comment, reply }) => {
   // console.log(comment);
   //check logic on moreComments
   const moreComments =
+    comment.replies &&
     comment.replies.data !== undefined &&
-    comment.replies.data.children[0].data?.replies !== undefined;
+    comment.replies.data.children[0].data.replies !== undefined;
   const commentStyles = {
     voteDiv: {
       display: "flex",
@@ -37,10 +38,18 @@ const Comment = ({ comment, reply }) => {
   const renderReplies = () => {
     //work on refactoring using .map method and .filter?
     //render all replies to root comment
+    console.log(comment);
+    console.log(moreComments);
+    let moreReplies = moreComments;
     const replies = []; //store replies to comment and
-    if (moreComments) {
+    if (moreReplies) {
       for (let i = 0; i < comment.replies.data.children.length; i++) {
-        if (moreComments && i < comment.replies.data.children.length) {
+        moreReplies =
+          comment.replies &&
+          comment.replies.data !== undefined &&
+          comment.replies.data.children[i].data.replies !== undefined;
+        console.log("inside for loop: ", moreReplies);
+        if (moreReplies && i < comment.replies.data.children.length) {
           replies.push(
             <Comment
               comment={comment.replies.data.children[i].data}
@@ -48,7 +57,6 @@ const Comment = ({ comment, reply }) => {
               reply={true}
             />
           );
-          console.log(comment.replies.data.children[i]);
         }
       }
     }

@@ -11,7 +11,7 @@ import { fetchSubreddits } from "./app/subredditSlice";
 const container = document.getElementById("root");
 const root = createRoot(container);
 
-store.dispatch(fetchSubredditPosts("antiwork"));
+store.dispatch(fetchSubredditPosts(""));
 store.dispatch(fetchSubreddits());
 
 root.render(

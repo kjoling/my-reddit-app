@@ -66,9 +66,11 @@ const redditSlice = createSlice({
       state.status = "loading";
     },
     [fetchSubredditPosts.fulfilled]: (state, action) => {
+      console.log(action.payload);
       state.status = "succeeded";
       const posts = action.payload;
       state.posts = posts;
+      // state.selectedSubreddit =
     },
     [fetchSubredditPosts.rejected]: (state, action) => {
       state.status = "failed";

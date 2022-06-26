@@ -73,6 +73,9 @@ export default function MediaCard({ post, index, onToggleComments }) {
   return (
     <section style={{ width: "85%", margin: "0 auto", padding: "0" }}>
       <CardContent sx={{ padding: "10px 0" }}>
+        <Typography sx={{ textAlign: "start", margin: "1em" }}>
+          {post.subreddit_name_prefixed}
+        </Typography>
         <Typography gutterBottom variant="h6" component="div" fontWeight={700}>
           {post.title.substring(0, 200)}...
         </Typography>
