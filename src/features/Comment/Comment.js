@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import Votes from "../../components/Votes/Votes";
 import { Divider } from "@mui/material";
 import { useState } from "react";
+import TimeAgo from "../../components/MediaCard/TimeAgo";
 
 //comment.author, comment.body, comment.replies(?), comment.score
 
@@ -45,8 +46,7 @@ const Comment = ({ comment }) => {
             key={comment.replies.data.children[i].data.id}
           />
         );
-        console.log(i);
-        console.log(comment.replies.data.children);
+        console.log(comment.replies.data.children[i]);
       }
     }
     return replies;
@@ -100,7 +100,9 @@ const Comment = ({ comment }) => {
         </section>
         <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
           <Votes score={comment.score} styles={commentStyles} />
-          <Typography variant="caption">TimeAgo goes Here</Typography>
+          <Typography variant="caption">
+            <TimeAgo timestamp={comment.created_utc} />
+          </Typography>
           {/* <Button size="small" onClick={handleClick} disabled={!moreComments}>
             {moreComments ? "View Replies" : "No Replies"}
           </Button> */}

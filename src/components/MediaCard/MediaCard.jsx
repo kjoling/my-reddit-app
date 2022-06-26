@@ -14,6 +14,7 @@ import { useState } from "react";
 import Box from "@mui/material/Box";
 import Skeleton from "@mui/material/Skeleton";
 import Comment from "../../features/Comment/Comment";
+import TimeAgo from "./TimeAgo";
 
 export default function MediaCard({ post, index, onToggleComments }) {
   const [showComments, setShowComments] = useState(false);
@@ -59,7 +60,9 @@ export default function MediaCard({ post, index, onToggleComments }) {
         <Link underline="none" variant="body2">
           {post.author}
         </Link>
-        <Typography variant="caption">TimeAgo Goes Here</Typography>
+        <Typography variant="caption">
+          <TimeAgo timestamp={post.created_utc} />
+        </Typography>
         <section
           style={{
             display: "flex",

@@ -1,16 +1,15 @@
-import { parseISO, formatDistanceToNow } from "date-fns";
+import { formatDistanceToNow } from "date-fns";
 
 const TimeAgo = ({ timestamp }) => {
   let timeAgo = "";
   if (timestamp) {
-    const date = parseISO(timestamp);
-    const timePeriod = formatDistanceToNow(date);
+    const myDate = new Date(timestamp * 1000);
+    const timePeriod = formatDistanceToNow(myDate);
     timeAgo = `${timePeriod} ago`;
   }
   console.log(timeAgo);
-
   return (
-    <span title={timestamp}>
+    <span title={timestamp} style={{ width: "100%" }}>
       &nbsp; <i>{timeAgo}</i>
     </span>
   );
