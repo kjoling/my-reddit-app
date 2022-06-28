@@ -8,7 +8,7 @@ export const getSubredditPosts = async (subreddit) => {
     const response = await axios.get(`${API_ROOT}/.json`);
     data = response.data;
   } else if (subreddit) {
-    const response = await axios.get(`${API_ROOT}/r/${subreddit}.json`);
+    const response = await axios.get(`${API_ROOT}/${subreddit}.json`);
     data = response.data;
   }
   // const response = await axios.get(`${API_ROOT}/r/${subreddit}.json`);

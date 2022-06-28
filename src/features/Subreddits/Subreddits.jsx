@@ -12,6 +12,7 @@ const Subreddits = () => {
   const subreddits = useSelector(selectAllSubreddits);
   const status = useSelector(selectSubredditStatus);
   const error = useSelector(selectSubredditErrorMessage);
+
   let content;
   if (status === "loading") {
     content = <p>Loading...</p>;
@@ -22,6 +23,7 @@ const Subreddits = () => {
   } else {
     content = <p>{error}</p>;
   }
+
   return (
     <section className="Subreddits">
       <Paper sx={{ padding: "10px" }} elevation={3}>

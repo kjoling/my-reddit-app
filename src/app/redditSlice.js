@@ -11,7 +11,7 @@ const initialState = {
 
 export const fetchSubredditPosts = createAsyncThunk(
   "redditPosts/fetchSubredditPosts",
-  async (subreddit = "soccer") => {
+  async (subreddit = "/r/soccer") => {
     try {
       const response = await getSubredditPosts(subreddit);
       const postsWithMetadata = response.map((post) => ({
@@ -60,6 +60,10 @@ const redditSlice = createSlice({
       state.posts[action.payload].showingComments =
         !state.posts[action.payload].showingComments;
     },
+    setSelectedSubreddit: (state, action) => {
+      state.subreddit = action.payload;
+      state.searchTerm = "";
+    },
   },
   extraReducers: {
     [fetchSubredditPosts.pending]: (state, action) => {
@@ -99,6 +103,10 @@ export const selectStatus = (state) => state.reddit.status;
 export const selectErrorMessage = (state) => state.reddit.error;
 //export const selectCommentsErrorMessage = (state) => state.reddit.posts; //access selected post.errorComments
 
-export const { setPosts, toggleShowingComments, startGetComments } =
-  redditSlice.actions;
+export const {
+  setPosts,
+  toggleShowingComments,
+  startGetComments,
+  setSelectedSubreddit,
+} = redditSlice.actions;
 export default redditSlice.reducer;

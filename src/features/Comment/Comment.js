@@ -12,8 +12,6 @@ import TimeAgo from "../../components/MediaCard/TimeAgo";
 
 const Comment = ({ comment, reply }) => {
   const [showReplies, setShowReplies] = useState(false || reply);
-
-  // console.log(comment);
   //check logic on moreComments
   const moreComments =
     comment.replies &&
@@ -38,17 +36,13 @@ const Comment = ({ comment, reply }) => {
   const renderReplies = () => {
     //work on refactoring using .map method and .filter?
     //render all replies to root comment
-    console.log(comment);
-    console.log(moreComments);
+
     let moreReplies = moreComments;
     const replies = []; //store replies to comment and
     if (moreReplies) {
       for (let i = 0; i < comment.replies.data.children.length; i++) {
         moreReplies =
-          comment.replies &&
-          comment.replies.data !== undefined &&
           comment.replies.data.children[i].data.replies !== undefined;
-        console.log("inside for loop: ", moreReplies);
         if (moreReplies && i < comment.replies.data.children.length) {
           replies.push(
             <Comment
