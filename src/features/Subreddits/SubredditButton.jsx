@@ -15,8 +15,21 @@ const SubredditButton = ({ subreddit }) => {
   };
 
   return (
-    <li style={{ listStyleType: "none" }} key={subreddit.id}>
+    <li style={{ listStyleType: "none", display: "flex" }} key={subreddit.id}>
       <Button sx={{ textTransform: "none" }} onClick={handleClick}>
+        <img
+          src={
+            subreddit.icon_img ||
+            `https://api.adorable.io/avatars/25/${subreddit.display_name}`
+          }
+          alt={`${subreddit.display_name}`}
+          style={{
+            border: `3px solid ${subreddit.primary_color}`,
+            borderRadius: "50%",
+            height: "2rem",
+            margin: ".5rem",
+          }}
+        />
         {subreddit.display_name_prefixed}
       </Button>
     </li>

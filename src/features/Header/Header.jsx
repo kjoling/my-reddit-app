@@ -5,16 +5,23 @@ import MobileSelect from "../../components/MoblieSelect/MobileSelect";
 
 import "./Header.css";
 import { selectAllSubreddits } from "../../app/subredditSlice";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchSubredditPosts } from "../../app/redditSlice";
 
 const Header = () => {
   const subreddit = useSelector(selectAllSubreddits);
+  const dispatch = useDispatch();
+
   return (
     <Paper elevation={3}>
       <header>
         <div className="redditLogo">
           <RedditIcon />
-          <p className="redditSiteName">
+          <p
+            className="redditSiteName"
+            onClick={() => dispatch(fetchSubredditPosts(""))}
+            style={{ cursor: "pointer" }}
+          >
             Reddit <span className="redditMinimal">Minimal</span>
           </p>
         </div>
