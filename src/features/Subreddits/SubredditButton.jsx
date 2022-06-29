@@ -1,14 +1,13 @@
 import { Button } from "@mui/material";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   fetchSubredditPosts,
   setSelectedSubreddit,
 } from "../../app/redditSlice";
 
 const SubredditButton = ({ subreddit }) => {
-  console.log(subreddit);
+  // console.log(subreddit);
   const dispatch = useDispatch();
-  const selectedSubreddit = useSelector(setSelectedSubreddit);
 
   const handleClick = () => {
     dispatch(setSelectedSubreddit(subreddit.url));

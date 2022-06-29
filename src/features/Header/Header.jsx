@@ -4,8 +4,11 @@ import Paper from "@mui/material/Paper";
 import MobileSelect from "../../components/MoblieSelect/MobileSelect";
 
 import "./Header.css";
+import { selectAllSubreddits } from "../../app/subredditSlice";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const subreddit = useSelector(selectAllSubreddits);
   return (
     <Paper elevation={3}>
       <header>
@@ -16,7 +19,7 @@ const Header = () => {
           </p>
         </div>
         <Search />
-        <MobileSelect />
+        <MobileSelect subreddit={subreddit} />
       </header>
     </Paper>
   );

@@ -1,7 +1,11 @@
 import { Box } from "@mui/system";
-import { CardMedia, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
+import { useSelector } from "react-redux";
+import { selectSelectedSubreddits } from "../../app/redditSlice";
 
 const Avatar = ({ post }) => {
+  const selectedSubreddit = useSelector(selectSelectedSubreddits);
+  console.log(selectedSubreddit);
   //get subredditSlice completed, use info from here to grab avatar icon to display for posts and in Subreddit component
   const image = `https://api.adorable.io/avatars/25/${post.display_name}`;
   return (
@@ -14,7 +18,7 @@ const Avatar = ({ post }) => {
     >
       {/* <CardMedia component="img" src={image} height="auto" width="auto" /> */}
       <Typography sx={{ textAlign: "start", margin: "1em" }}>
-        {post.subreddit_name_prefixed}
+        {selectedSubreddit === "" && post.subreddit_name_prefixed}
       </Typography>
     </Box>
   );

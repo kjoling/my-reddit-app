@@ -6,7 +6,7 @@ const initialState = {
   error: false,
   status: "idle",
   searchTerm: "",
-  selectedSubreddit: "/r/pics/",
+  selectedSubreddit: "",
 };
 
 export const fetchSubredditPosts = createAsyncThunk(
@@ -61,7 +61,7 @@ const redditSlice = createSlice({
         !state.posts[action.payload].showingComments;
     },
     setSelectedSubreddit: (state, action) => {
-      state.subreddit = action.payload;
+      state.selectedSubreddit = action.payload;
       state.searchTerm = "";
     },
   },
@@ -70,7 +70,6 @@ const redditSlice = createSlice({
       state.status = "loading";
     },
     [fetchSubredditPosts.fulfilled]: (state, action) => {
-      console.log(action.payload);
       state.status = "succeeded";
       const posts = action.payload;
       state.posts = posts;
@@ -101,6 +100,8 @@ const redditSlice = createSlice({
 export const selectAllPosts = (state) => state.reddit.posts;
 export const selectStatus = (state) => state.reddit.status;
 export const selectErrorMessage = (state) => state.reddit.error;
+export const selectSelectedSubreddits = (state) =>
+  state.reddit.selectedSubreddit;
 //export const selectCommentsErrorMessage = (state) => state.reddit.posts; //access selected post.errorComments
 
 export const {

@@ -8,13 +8,28 @@ import {
   selectSubredditStatus,
   selectSubredditErrorMessage,
 } from "../../app/subredditSlice";
+import {
+  setSelectedSubreddit,
+  fetchSubredditPosts,
+} from "../../app/redditSlice";
 import { useSelector } from "react-redux";
 import "./MobileSelect.css";
+import { useDispatch } from "react-redux";
 
-export default function MobileSelect() {
+export default function MobileSelect({ subreddit }) {
   const subreddits = useSelector(selectAllSubreddits);
   const status = useSelector(selectSubredditStatus);
   const error = useSelector(selectSubredditErrorMessage);
+
+  const dispatch = useDispatch();
+
+  //get value from selected drop down option and dispatch to change subreddit on Mobile veiw
+
+  const handleSelect = (e) => {
+    dispatch(setSelectedSubreddit(e.target.value));
+    dispatch(fetchSubredditPosts(e.target.value));
+  };
+
   let content;
   if (status === "loading") {
     content = <option>Loading...</option>;
@@ -43,6 +58,7 @@ export default function MobileSelect() {
             name: "subreddits",
             id: "uncontrolled-native",
           }}
+          onChange={(e) => handleSelect(e)}
         >
           {content}
         </NativeSelect>
