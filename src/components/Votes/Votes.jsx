@@ -47,6 +47,7 @@ const Votes = ({ score, styles }) => {
         }}
         onClick={() => onHandleVote(1)}
         style={styles.upvote}
+        title="upvote"
       >
         {renderUpVote()}
       </Button>
@@ -61,6 +62,7 @@ const Votes = ({ score, styles }) => {
         }}
         onClick={() => onHandleVote(-1)}
         style={styles.downvote}
+        title="downvote"
       >
         {renderDownVote()}
       </Button>

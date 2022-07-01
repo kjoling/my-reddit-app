@@ -19,6 +19,7 @@ const SubredditButton = ({ subreddit }) => {
       <Button
         sx={{ textTransform: "none", borderRadius: "15px", padding: 0 }}
         onClick={handleClick}
+        title="Subreddit button"
       >
         <img
           src={

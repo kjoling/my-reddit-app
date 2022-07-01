@@ -60,11 +60,21 @@ const Comment = ({ comment, reply }) => {
 
   const renderRepliesButton = () =>
     showReplies ? (
-      <Button size="small" onClick={handleClick} disabled={!moreComments}>
+      <Button
+        size="small"
+        onClick={handleClick}
+        disabled={!moreComments}
+        title="view replies"
+      >
         {moreComments ? "Collapse" : "No Replies"}
       </Button>
     ) : (
-      <Button size="small" onClick={handleClick} disabled={!moreComments}>
+      <Button
+        size="small"
+        onClick={handleClick}
+        disabled={!moreComments}
+        title="view replies"
+      >
         {moreComments ? "View Replies" : "No Replies"}
       </Button>
     );

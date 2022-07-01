@@ -108,7 +108,7 @@ export default function MediaCard({ post, index, onToggleComments }) {
             alignItems: "center",
           }}
         >
-          <IconButton size="small" onClick={handleClick}>
+          <IconButton size="small" onClick={handleClick} title="comment button">
             <ForumOutlinedIcon />{" "}
             <Typography>{shortenNumber(post.num_comments, 1)}</Typography>
           </IconButton>
