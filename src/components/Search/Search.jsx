@@ -4,8 +4,10 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getSearchTerm } from "../../app/redditSlice";
+import { debounce } from "../../utils/debounce";
 
 const Search = () => {
+  //implement debounce to prevent unnecessary rerendering when searching
   const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch();
 
@@ -14,8 +16,16 @@ const Search = () => {
     console.log(searchTerm);
     dispatch(getSearchTerm(searchTerm));
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
   return (
-    <form className="search" onSubmit={handleSearch}>
+    <form
+      className="search"
+      onChange={debounce(handleSearch, 1500)}
+      onSubmit={(e) => handleSubmit(e)}
+    >
       <TextField
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
