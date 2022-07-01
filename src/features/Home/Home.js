@@ -2,15 +2,15 @@ import React from "react";
 import Post from "../Post/Post";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  selectAllPosts,
   selectStatus,
   selectErrorMessage,
+  selectFilteredPosts,
 } from "../../app/redditSlice";
 import { fetchPostComments } from "../../app/redditSlice";
 import { Skeleton } from "@mui/material";
 
 const Home = () => {
-  const posts = useSelector(selectAllPosts);
+  const posts = useSelector(selectFilteredPosts);
   const status = useSelector(selectStatus);
   const error = useSelector(selectErrorMessage);
   const dispatch = useDispatch();

@@ -1,4 +1,8 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import {
+  createSlice,
+  createAsyncThunk,
+  createSelector,
+} from "@reduxjs/toolkit";
 import { getSubredditPosts, getPostComments } from "../api/reddit";
 
 const initialState = {
@@ -64,6 +68,9 @@ const redditSlice = createSlice({
       state.selectedSubreddit = action.payload;
       state.searchTerm = "";
     },
+    getSearchTerm: (state, action) => {
+      state.searchTerm = action.payload;
+    },
   },
   extraReducers: {
     [fetchSubredditPosts.pending]: (state, action) => {
@@ -102,12 +109,25 @@ export const selectStatus = (state) => state.reddit.status;
 export const selectErrorMessage = (state) => state.reddit.error;
 export const selectSelectedSubreddits = (state) =>
   state.reddit.selectedSubreddit;
-//export const selectCommentsErrorMessage = (state) => state.reddit.posts; //access selected post.errorComments
+export const selectSearchTerm = (state) => state.reddit.searchTerm;
 
+export const selectFilteredPosts = createSelector(
+  [selectAllPosts, selectSearchTerm],
+  (posts, searchTerm) => {
+    if (searchTerm !== "") {
+      return posts.filter((post) =>
+        post.title.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+
+    return posts;
+  }
+);
 export const {
   setPosts,
   toggleShowingComments,
   startGetComments,
   setSelectedSubreddit,
+  getSearchTerm,
 } = redditSlice.actions;
 export default redditSlice.reducer;
