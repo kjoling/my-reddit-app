@@ -15,13 +15,13 @@ const Header = () => {
   return (
     <Paper elevation={3}>
       <header>
-        <div className="redditLogo">
+        <div
+          className="redditLogo"
+          onClick={() => dispatch(fetchSubredditPosts(""))}
+          style={{ cursor: "pointer" }}
+        >
           <RedditIcon />
-          <p
-            className="redditSiteName"
-            onClick={() => dispatch(fetchSubredditPosts(""))}
-            style={{ cursor: "pointer" }}
-          >
+          <p className="redditSiteName">
             Reddit <span className="redditMinimal">Minimal</span>
           </p>
         </div>

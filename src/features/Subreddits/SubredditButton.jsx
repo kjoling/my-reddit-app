@@ -16,7 +16,10 @@ const SubredditButton = ({ subreddit }) => {
 
   return (
     <li style={{ listStyleType: "none", display: "flex" }} key={subreddit.id}>
-      <Button sx={{ textTransform: "none" }} onClick={handleClick}>
+      <Button
+        sx={{ textTransform: "none", borderRadius: "15px", padding: 0 }}
+        onClick={handleClick}
+      >
         <img
           src={
             subreddit.icon_img ||
