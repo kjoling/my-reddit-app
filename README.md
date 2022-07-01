@@ -1,3 +1,32 @@
+## About the App
+
+This is a project based off of a Codecademy assignment utilizing the undocumented Reddit JSON API:
+
+https://github.com/reddit-archive/reddit/wiki/JSON
+
+The app allows you to filter by selected subreddits, loads the home page by default, and allow you to search the filtered posts for specific topics.
+
+The application functions on both Desktop and Moblie view with a dropdown menu on the Mobile version of the application.
+
+This app is live on the following site:
+
+https://keeans-reddit-app.netlify.app/
+
+Using Lighthouse, the following scores were assigned to this project:
+
+Performance - 52
+Accessibility - 100
+Best Practices - 75
+SEO - 92
+
+Performance ratings are due to lack of 'Properly sized images, serve images in next-gen format, and image elements do not have explicit width and height'.
+
+The img element is rendered via a Material UI component called "CardMedia", which uses the sx prop to set the img size. It has been set to 50% height and width, but this is not reflected in the test.
+
+## Future Work:
+
+Writing end to end tests as well as unit tests with Jest.
+
 # Getting Started with Create React App and Redux
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
