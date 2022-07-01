@@ -13,8 +13,6 @@ const Subreddits = () => {
   const status = useSelector(selectSubredditStatus);
   const error = useSelector(selectSubredditErrorMessage);
 
-  console.log(subreddits);
-
   let content;
   if (status === "loading") {
     content = <p>Loading...</p>;
