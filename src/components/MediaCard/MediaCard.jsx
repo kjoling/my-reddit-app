@@ -75,12 +75,13 @@ export default function MediaCard({ post, index, onToggleComments }) {
       <CardContent sx={{ padding: "10px 0" }}>
         <Avatar post={post} />
         <Typography gutterBottom variant="h6" component="div" fontWeight={700}>
-          {/* {showComments ? post.title : `${post.title.substring(0, 200)}...`} */}
           {showComments || post.title.length < 200
             ? post.title
             : `${post.title.substring(0, 150)}...`}
         </Typography>
-        <CardMedia component="img" height="auto" src={`${post.url}`} alt="" />
+        {post.url !== "" && (
+          <CardMedia component="img" height="auto" src={`${post.url}`} alt="" />
+        )}
       </CardContent>
       <Divider sx={{ width: "100%", margin: "auto" }} />
       <CardActions className="MediaCard-Buttons">

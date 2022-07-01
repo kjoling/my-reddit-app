@@ -7,6 +7,7 @@ import Votes from "../../components/Votes/Votes";
 import { Divider } from "@mui/material";
 import { useState } from "react";
 import TimeAgo from "../../components/MediaCard/TimeAgo";
+import "./Comment.css";
 
 //comment.author, comment.body, comment.replies(?), comment.score
 
@@ -69,7 +70,7 @@ const Comment = ({ comment, reply }) => {
     );
 
   return (
-    <>
+    <section className="Comment">
       <Card sx={{ width: "100%", borderLeft: "1px solid black" }}>
         <section
           style={{ display: "flex", width: "100%", justifyContent: "center" }}
@@ -118,7 +119,7 @@ const Comment = ({ comment, reply }) => {
       <section style={{ marginLeft: "20px" }}>
         {showReplies && renderReplies()}
       </section>
-    </>
+    </section>
   );
 };
 
