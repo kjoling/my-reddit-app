@@ -20,7 +20,6 @@ import Avatar from "../../features/Avatar/Avatar";
 export default function MediaCard({ post, index, onToggleComments }) {
   const [showComments, setShowComments] = useState(false);
 
-  //dispatch startGetComments to initiate state to store commentsStatus, set index, then useEffect to trigger fetchPostComments
   const dispatch = useDispatch();
 
   const handleClick = () => {
@@ -70,33 +69,16 @@ export default function MediaCard({ post, index, onToggleComments }) {
         .map((comment) => <Comment comment={comment} key={comment.id} />);
     }
   };
-  // const subredditThumbnail = () => {
-  //   const image = post.thumbnail ? post.thumbnail : "";
-  //   return (
-  //     <Box
-  //       sx={{
-  //         display: "flex",
-  //         justifyContent: "flex-start",
-  //         alignItems: "center",
-  //       }}
-  //     >
-  //       <CardMedia component="img" src={image} />
-  //       <Typography sx={{ textAlign: "start", margin: "1em" }}>
-  //         {post.subreddit_name_prefixed}
-  //       </Typography>
-  //     </Box>
-  //   );
-  // };
 
   return (
     <section style={{ width: "85%", margin: "0 auto", padding: "0" }}>
       <CardContent sx={{ padding: "10px 0" }}>
-        {/* <Typography sx={{ textAlign: "start", margin: "1em" }}>
-          {post.subreddit_name_prefixed}
-        </Typography> */}
         <Avatar post={post} />
         <Typography gutterBottom variant="h6" component="div" fontWeight={700}>
-          {post.title.substring(0, 200)}...
+          {/* {showComments ? post.title : `${post.title.substring(0, 200)}...`} */}
+          {showComments || post.title.length < 200
+            ? post.title
+            : `${post.title.substring(0, 150)}...`}
         </Typography>
         <CardMedia component="img" height="auto" src={`${post.url}`} alt="" />
       </CardContent>
@@ -116,9 +98,9 @@ export default function MediaCard({ post, index, onToggleComments }) {
           }}
         >
           <IconButton size="small" onClick={handleClick}>
-            <ForumOutlinedIcon />
+            <ForumOutlinedIcon />{" "}
+            <Typography>{shortenNumber(post.num_comments, 1)}</Typography>
           </IconButton>
-          <Typography>{shortenNumber(post.num_comments, 1)}</Typography>
         </section>
       </CardActions>
       {showComments && renderComments()}
