@@ -84,8 +84,8 @@ export default function MediaCard({ post, index, onToggleComments }) {
             <CardMedia
               component="img"
               sx={{
-                width: "65%",
-                height: "65%",
+                width: "50%",
+                height: "50%",
               }}
               src={`${post.url}`}
               alt=""
