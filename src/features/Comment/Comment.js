@@ -116,7 +116,7 @@ const Comment = ({ comment, reply }) => {
         </CardActions>
       </Card>
       <Divider />
-      <section style={{ marginLeft: "20px" }}>
+      <section style={{ marginLeft: "5px" }}>
         {showReplies && renderReplies()}
       </section>
     </section>

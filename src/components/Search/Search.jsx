@@ -13,7 +13,6 @@ const Search = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    console.log(searchTerm);
     dispatch(getSearchTerm(searchTerm));
   };
 

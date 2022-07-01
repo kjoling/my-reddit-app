@@ -82,7 +82,6 @@ export default function MediaCard({ post, index, onToggleComments }) {
         {post.url.search(".jpg") !== -1 && (
           <CardMedia component="img" height="auto" src={`${post.url}`} alt="" />
         )}
-        {console.log(post.url.search(".jpg"))}
       </CardContent>
       <Divider sx={{ width: "100%", margin: "auto" }} />
       <CardActions className="MediaCard-Buttons">
