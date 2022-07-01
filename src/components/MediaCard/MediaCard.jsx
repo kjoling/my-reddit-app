@@ -80,17 +80,18 @@ export default function MediaCard({ post, index, onToggleComments }) {
             : `${post.title.substring(0, 150)}...`}
         </Typography>
         <section style={{ display: "flex", justifyContent: "center" }}>
-          {post.url.search(".jpg") !== -1 && (
-            <CardMedia
-              component="img"
-              sx={{
-                width: "50%",
-                height: "50%",
-              }}
-              src={`${post.url}`}
-              alt=""
-            />
-          )}
+          {post.url.search(".jpg") ||
+            (post.url.search(".png") !== -1 && (
+              <CardMedia
+                component="img"
+                sx={{
+                  width: "50%",
+                  height: "50%",
+                }}
+                src={`${post.url}`}
+                alt=""
+              />
+            ))}
         </section>
       </CardContent>
       <Divider sx={{ width: "100%", margin: "auto" }} />
