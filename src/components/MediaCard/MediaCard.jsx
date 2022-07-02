@@ -74,12 +74,26 @@ export default function MediaCard({ post, index, onToggleComments }) {
     <section style={{ width: "85%", margin: "0 auto", padding: "0" }}>
       <CardContent sx={{ padding: "10px 0" }}>
         <Avatar post={post} />
-        <Typography gutterBottom variant="h6" component="div" fontWeight={700}>
+        <Typography
+          gutterBottom
+          variant="h6"
+          component="div"
+          fontWeight={700}
+          onClick={handleClick}
+          sx={{ cursor: "pointer" }}
+        >
           {showComments || post.title.length < 200
             ? post.title
             : `${post.title.substring(0, 150)}...`}
         </Typography>
-        <section style={{ display: "flex", justifyContent: "center" }}>
+        <section
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            cursor: "pointer",
+          }}
+          onClick={handleClick}
+        >
           {(post.url.search(".jpg") || post.url.search(".png")) !== -1 && (
             <CardMedia
               component="img"
